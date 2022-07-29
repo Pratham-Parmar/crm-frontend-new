@@ -85,6 +85,7 @@ function TablePage() {
               <StyledTableCell align="right">Container Size</StyledTableCell>
               <StyledTableCell align="right">Rate</StyledTableCell>
               <StyledTableCell align="right">Uploaded By</StyledTableCell>
+              <StyledTableCell align="right">Delete Rate</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
@@ -106,6 +107,9 @@ function TablePage() {
                 <StyledTableCell align="right">{row.rate}</StyledTableCell>
                 <StyledTableCell align="right">
                   {row.created_by}
+                </StyledTableCell>
+                <StyledTableCell>
+                  Delete
                 </StyledTableCell>
               </StyledTableRow>
             ))}
