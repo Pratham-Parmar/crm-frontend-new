@@ -1,0 +1,97 @@
+
+.contact__wrap{
+    text-align: center;
+    transform: translateY(10%);
+  }
+  h1{
+    font-family: 'Pacifico', cursive;
+    font-size: 56px;
+    margin-bottom: 50px;
+    color: var(--color-primary);
+  }
+  .contact__form{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto; 
+  }
+  .contact__form > div{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+  }
+  .contact__form input,
+  .contact__form select{
+      height: 35px;
+      border: 2px solid var(--color-primary);
+      padding-left: 5px;
+      margin-bottom: 10px;
+      transition: .2s;
+  }
+  .contact__form input:hover{
+      border: 2px solid #ff8080;
+  }
+  input[type="submit"]{
+    margin: 0 auto;
+  }
+  .contact__form input::placeholder{
+      text-transform: uppercase;
+      font-size: 12px;
+  }
+  .contact__form textarea{
+      height: 150px;
+      border: 2px solid var(--color-primary);
+      resize: none;
+      padding-left: 5px;
+      padding-top: 10px;
+      margin-bottom: 10px;
+  }
+  .contact__form textarea::placeholder{
+      text-transform: uppercase;
+      font-size: 12px;
+  }
+  .contact__form textarea:hover{
+       border: 2px solid #ff8080;
+  }
+  .contact__form input[type="submit"]{
+      height: 40px;
+      font-size: 14px;
+      color: #fff;
+      background: var(--color-primary);
+      text-transform: uppercase;
+      width: 50%;
+      transition: .2s;
+  }
+  .contact__form input[type="submit"]:hover{
+      font-size: 16px;
+      border: 0;
+  }
+  *:focus{
+    outline: #ff8080 auto 1px;
+  }
+  
+  html{
+    background-image: url("../assets/360_F_446228330_C8nqvb4hllsFg67RZfVQ32nOOGdtPmNv.jpg");
+    background-color: #f7f5ff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  
+  .fa-instagram{
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    font-size: 38px;
+  }
+  
+  .fa-instagram:hover{
+    font-size: 42px;
+    color: #ff8080;
+    transition: all .1s linear;
+    cursor: pointer;
+  }
