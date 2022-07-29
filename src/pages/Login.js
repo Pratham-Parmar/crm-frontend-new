@@ -48,7 +48,7 @@ const Form = () => {
             name="password"
             type="password"
             value={inputs.password}
-            // checked={setselectedOption1("Export")}
+
             onChange={(e) => handleInputChange(e)}
           />
         </div>
