@@ -20,7 +20,7 @@ const Form = () => {
     const sendMessage = (e) => {
         if (e) e.preventDefault();
         // console.log(BASE_URL + "/add")
-        fetch(`https://rate-crm.herokuapp.com/add`, {
+        fetch(`http://127.0.0.1:8000/add`, {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(inputs),

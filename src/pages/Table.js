@@ -10,6 +10,8 @@ import { Button } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import BASE_URL from "../config";
 import { useNavigate } from "react-router-dom";
+
+
 function TablePage() {
   const navigate = useNavigate();
 
@@ -17,7 +19,7 @@ function TablePage() {
     source: "",
     destination: "",
     container_size: "",
-    email: "pratham.parmar@cogoport.com",
+    email: "",
   });
   const [data, setData] = useState([]);
 
@@ -31,12 +33,14 @@ function TablePage() {
     },
   }));
 
-  const search = () => {
-    fetch(BASE_URL + "/search?" + new URLSearchParams(inputs), {
+   const search = () => {
+     fetch(BASE_URL + "search?" + new URLSearchParams(inputs), {
       method: "GET",
       credentials: "include",
     }).then(async function (resp) {
-      setData(await resp.json());
+        let data = await resp.json()
+         console.log(data)
+      setData(data);
     });
   };
   useEffect(() => {
@@ -89,24 +93,24 @@ function TablePage() {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {data.map((row) => (
+            {   data.map((row) => (
               <StyledTableRow
-                key={row.name}
+                key={row.fields.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <StyledTableCell component="th" scope="row">
-                  {row.exim}
+                  {row.fields.exim}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.source}</StyledTableCell>
+                <StyledTableCell align="right">{row.fields.source}</StyledTableCell>
                 <StyledTableCell align="right">
-                  {row.destination}
+                  {row.fields.destination}
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  {row.container_size}
+                  {row.fields.container_size}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.rate}</StyledTableCell>
+                <StyledTableCell align="right">{row.fields.rate}</StyledTableCell>
                 <StyledTableCell align="right">
-                  {row.created_by}
+                  {row.fields.created_by}
                 </StyledTableCell>
                 <StyledTableCell>
                   Delete
