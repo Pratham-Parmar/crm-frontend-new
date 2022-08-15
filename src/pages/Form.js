@@ -20,7 +20,7 @@ const Form = () => {
     const sendMessage = (e) => {
         if (e) e.preventDefault();
         // console.log(BASE_URL + "/add")
-        fetch(`https://rate-crm.herokuapp.com/add`, {
+        fetch(BASE_URL+'/add', {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(inputs),
@@ -120,13 +120,6 @@ const Form = () => {
                     type="number" name="rate"
                     placeholder="rate"
                     title="Rate"
-                    required/>
-                <input
-                    value={inputs.uploader}
-                    onChange={e => handleInputChange(e)}
-                    name="email"
-                    placeholder="Uploaded By"
-                    title="Uploader By"
                     required/>
                 <input
                     type="submit"

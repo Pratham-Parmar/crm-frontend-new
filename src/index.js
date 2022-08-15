@@ -10,7 +10,6 @@ import Login from "./pages/Login";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
