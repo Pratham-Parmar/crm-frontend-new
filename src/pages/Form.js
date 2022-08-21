@@ -8,7 +8,13 @@ import {useNavigate} from 'react-router-dom'
 
 const Form = () => {
     const navigate = useNavigate()
-    const [inputs, setInputs] = useState({source: '', destination: '', rate: 0, email: '', container_size: ''});
+    const [inputs, setInputs] = useState({
+        source: '',
+        destination: '',
+        exim: 'Import',
+        rate: 0,
+        container_size: '20FT'
+    });
     const [ports, setPort] = useState([])
 
     useEffect(() => {
@@ -19,6 +25,7 @@ const Form = () => {
             if (response.status === 200) {
                 let pts = await response.json()
                 setPort(pts)
+                setInputs({source: pts[0], destination: pts[0], rate: 0, exim: 'Import', container_size: '20FT'})
             }
         })
     }, [])
@@ -77,7 +84,7 @@ const Form = () => {
                 <span style={{display: "flex", justifyContent: "space-between"}}>
                 Port Of Loading
                 <select
-                    style={{width:'fit-content',marginLeft:'20px', minWidth: "50%"}}
+                    style={{width: 'fit-content', marginLeft: '20px', minWidth: "50%"}}
                     value={inputs.source}
                     onChange={e => handleInputChange(e)}
                     type="text" name="source"
@@ -90,10 +97,10 @@ const Form = () => {
                 </span>
 
 
-                <span  style={{display: "flex", justifyContent: "space-between"}}>
+                <span style={{display: "flex", justifyContent: "space-between"}}>
                 Port Of Destination
                 <select
-                    style={{width:'fit-content',marginLeft:'20px', minWidth: "50%"}}
+                    style={{width: 'fit-content', marginLeft: '20px', minWidth: "50%"}}
                     value={inputs.destination}
                     onChange={e => handleInputChange(e)}
                     type="text" name="destination"
@@ -106,7 +113,7 @@ const Form = () => {
                 </span>
                 <div style={{display: 'flex', flexDirection: "row", justifyContent: "space-between"}}>
 
-                        Container Size
+                    Container Size
 
                     <label>
                         <input
@@ -140,12 +147,12 @@ const Form = () => {
                         40HQ
                     </label>
                 </div>
-                <span style={{display: "flex", justifyContent: "space-between",alignItems: "center"}}>
+                <span style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                     Rate
                 <input
                     value={inputs.rate}
                     onChange={e => handleInputChange(e)}
-                    style={{width:'fit-content',marginLeft:'20px'}}
+                    style={{width: 'fit-content', marginLeft: '20px'}}
                     type="number" name="rate"
                     placeholder="rate"
                     title="Rate"
