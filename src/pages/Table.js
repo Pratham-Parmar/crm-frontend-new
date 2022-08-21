@@ -74,31 +74,35 @@ function TablePage() {
         },
     }));
     return (
-        <>
-            <Button variant="contained" onClick={() => navigate("/add")}>
-                Add Rate
-            </Button>
-            <Button
-                variant="contained"
-                onClick={() => {
-                    localStorage.clear();
-                    navigate("/login")
-                }}
-            >
-                Logout
-            </Button>
-            <TableContainer component={Paper}>
+        <div style={{margin: '10px'}}>
+            <div style={{display: "grid", gridTemplateColumns: "85% 15%"}}>
+                <Button style={{maxWidth: "150px"}}
+                    // style={{marginRight:'10px'}}
+                        variant="contained" onClick={() => navigate("/add")}>
+                    Add Rate
+                </Button>
+                <Button style={{maxWidth: "150px"}}
+                        variant="contained"
+                        onClick={() => {
+                            localStorage.clear();
+                            navigate("/login")
+                        }}
+                >
+                    Logout
+                </Button>
+            </div>
+            <TableContainer style={{marginTop: '10px'}} component={Paper}>
                 <Table sx={{minWidth: 450}} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
                             <StyledTableCell>Ex/Im</StyledTableCell>
-                            <StyledTableCell align="right">Port of Loading</StyledTableCell>
-                            <StyledTableCell align="right">
+                            <StyledTableCell>Port of Loading</StyledTableCell>
+                            <StyledTableCell>
                                 Port of Destination
                             </StyledTableCell>
-                            <StyledTableCell align="right">Container Size</StyledTableCell>
-                            <StyledTableCell align="right">Rate</StyledTableCell>
-                            <StyledTableCell align="right">Delete Rate</StyledTableCell>
+                            <StyledTableCell>Container Size</StyledTableCell>
+                            <StyledTableCell>Rate</StyledTableCell>
+                            <StyledTableCell>Delete Rate</StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
                     <TableBody>
@@ -110,11 +114,11 @@ function TablePage() {
                                 <StyledTableCell component="th" scope="row">
                                     {row.exim}
                                 </StyledTableCell>
-                                <StyledTableCell align="right">{row.source}</StyledTableCell>
-                                <StyledTableCell align="right">{row.destination}</StyledTableCell>
-                                <StyledTableCell align="right">{row.container_size}</StyledTableCell>
-                                <StyledTableCell align="right">{row.rate}</StyledTableCell>
-                                <StyledTableCell align="right">{row.created_by}</StyledTableCell>
+                                <StyledTableCell>{row.source}</StyledTableCell>
+                                <StyledTableCell>{row.destination}</StyledTableCell>
+                                <StyledTableCell>{row.container_size}</StyledTableCell>
+                                <StyledTableCell>{row.rate}</StyledTableCell>
+                                {/*<StyledTableCell >{row.created_by}</StyledTableCell>*/}
                                 <StyledTableCell>
                                     <Button onClick={() => deleteRate(row.id)}>
                                         Delete
@@ -125,7 +129,7 @@ function TablePage() {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </>
+        </div>
     );
 }
 

@@ -47,7 +47,7 @@ const Form = () => {
     }
     return (
         <div className="contact__wrap">
-            <h1>Add Rates</h1>
+            <h1 style={{textAlign: "center"}}>Add Rates</h1>
             <form
                 // onSubmit={e => sendMessage(e)}
                 className="contact__form">
@@ -74,10 +74,10 @@ const Form = () => {
                         Export
                     </label>
                 </div>
-                <span>
+                <span style={{display: "flex", justifyContent: "space-between"}}>
                 Port Of Loading
                 <select
-                    style={{width:'fit-content',marginLeft:'20px'}}
+                    style={{width:'fit-content',marginLeft:'20px', minWidth: "50%"}}
                     value={inputs.source}
                     onChange={e => handleInputChange(e)}
                     type="text" name="source"
@@ -90,10 +90,10 @@ const Form = () => {
                 </span>
 
 
-                <span>
+                <span  style={{display: "flex", justifyContent: "space-between"}}>
                 Port Of Destination
                 <select
-                    style={{width:'fit-content',marginLeft:'20px'}}
+                    style={{width:'fit-content',marginLeft:'20px', minWidth: "50%"}}
                     value={inputs.destination}
                     onChange={e => handleInputChange(e)}
                     type="text" name="destination"
@@ -104,10 +104,9 @@ const Form = () => {
                         <option value={item}>{item}</option>))}
                 </select>
                 </span>
-                <div style={{display: 'flex', flexDirection: "row"}}>
-                    <h3 style={{marginRight: 20}}>
+                <div style={{display: 'flex', flexDirection: "row", justifyContent: "space-between"}}>
+
                         Container Size
-                    </h3>
 
                     <label>
                         <input
@@ -141,7 +140,7 @@ const Form = () => {
                         40HQ
                     </label>
                 </div>
-                <span>
+                <span style={{display: "flex", justifyContent: "space-between",alignItems: "center"}}>
                     Rate
                 <input
                     value={inputs.rate}
