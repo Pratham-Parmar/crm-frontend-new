@@ -3,30 +3,44 @@ import React, {useEffect, useState} from 'react'
 // const { useForm } = ReactHookForm
 import "./form.css"
 import BASE_URL from '../config'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 
 const Form = () => {
     const navigate = useNavigate()
     const [inputs, setInputs] = useState({source: '', destination: '', rate: 0, email: '', container_size: ''});
+    const [ports, setPort] = useState([])
+
+    useEffect(() => {
+        fetch(BASE_URL + '/ports', {
+            method: 'GET',
+            credentials: 'include'
+        }).then(async response => {
+            if (response.status === 200) {
+                let pts = await response.json()
+                setPort(pts)
+            }
+        })
+    }, [])
+
     const handleInputChange = (e) => {
         e.persist();
         setInputs(inputs => ({...inputs, [e.target.name]: e.target.value}));
     }
 
-    useEffect(()=>{
-        if(!("Login_status" in localStorage && localStorage.getItem("Login_status") == "true")) navigate("/login")
-    },[])
+    useEffect(() => {
+        if (!("Login_status" in localStorage && localStorage.getItem("Login_status") == "true")) navigate("/login")
+    }, [])
     const sendMessage = (e) => {
         if (e) e.preventDefault();
         // console.log(BASE_URL + "/add")
-        fetch(BASE_URL+'/add', {
+        fetch(BASE_URL + '/add', {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(inputs),
             // redirect: "manual"
         }).then(response => {
-            if(response.status === 200){
+            if (response.status === 200) {
                 navigate("/table")
             }
         })
@@ -42,6 +56,7 @@ const Form = () => {
                         <input
                             name='exim'
                             type="radio"
+                            defaultChecked={true}
                             value="Import"
                             // checked={setselectedOption1("Import")}
                             onChange={e => handleInputChange(e)}
@@ -59,26 +74,37 @@ const Form = () => {
                         Export
                     </label>
                 </div>
+                <span>
+                Port Of Loading
                 <select
+                    style={{width:'fit-content',marginLeft:'20px'}}
                     value={inputs.source}
                     onChange={e => handleInputChange(e)}
                     type="text" name="source"
                     placeholder="source"
                     title="Port of Loading"
                     required>
-                        {["Port of Loading", "NHAVA SHEVA", "HAZIRA", "CHENNAI", "MUNDRA", "ICD TKD", "Qingdao", "SHANGHAI", "TAINJIN", "SHEKOU", "FUZHOU", "NINGBO", "NANSHA"].map(item => (<option value={item}>{item}</option>))}
-                    </select>
+                    {ports.map(item => (
+                        <option value={item}>{item}</option>))}
+                </select>
+                </span>
+
+
+                <span>
+                Port Of Destination
                 <select
+                    style={{width:'fit-content',marginLeft:'20px'}}
                     value={inputs.destination}
                     onChange={e => handleInputChange(e)}
                     type="text" name="destination"
                     placeholder="destination"
                     title="Port of Destination"
                     required>
-                        {["Port of Destination","NHAVA SHEVA", "HAZIRA", "CHENNAI", "MUNDRA", "ICD TKD", "Qingdao", "SHANGHAI", "TAINJIN", "SHEKOU", "FUZHOU", "NINGBO", "NANSHA"].map(item => (<option value={item}>{item}</option>))}
-                    </select>
+                    {ports.map(item => (
+                        <option value={item}>{item}</option>))}
+                </select>
+                </span>
                 <div style={{display: 'flex', flexDirection: "row"}}>
-
                     <h3 style={{marginRight: 20}}>
                         Container Size
                     </h3>
@@ -86,6 +112,7 @@ const Form = () => {
                     <label>
                         <input
                             name='container_size'
+                            defaultChecked={true}
                             type="radio"
                             value="20FT"
                             // checked={setselectedOption1("Import")}
@@ -114,13 +141,17 @@ const Form = () => {
                         40HQ
                     </label>
                 </div>
+                <span>
+                    Rate
                 <input
                     value={inputs.rate}
                     onChange={e => handleInputChange(e)}
+                    style={{width:'fit-content',marginLeft:'20px'}}
                     type="number" name="rate"
                     placeholder="rate"
                     title="Rate"
                     required/>
+                </span>
                 <input
                     type="submit"
                     onClick={sendMessage}
