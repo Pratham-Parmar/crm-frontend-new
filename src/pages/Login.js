@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import "./form.css";
 import BASE_URL from "../config";
 import { useNavigate } from "react-router-dom";
+import Logo from "../assets/o9wginloa5lkpwyzluci.webp";
+import LogoSmall from "../assets/25400811.png";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -30,7 +32,8 @@ const Form = () => {
   };
   return (
     <div className="contact__wrap">
-      <h1>Login</h1>
+      {/*<h1>Login</h1>*/}
+      <img src={Logo} style={{maxWidth: "300px",marginLeft: "50%", transform: "translateX(-50%)"}}/>
       <form onSubmit={(e) => sendMessage(e)} className="contact__form">
         <div>
           <label>Email</label>
@@ -54,7 +57,8 @@ const Form = () => {
         </div>
         <input type="submit" value="LOGIN" />
       </form>
-    </div>
+      <a href={"https://www.cogoport.com"}><img src={LogoSmall} width={"70"} style={{position: "fixed", bottom: "10px", right: "10px"}}/>
+    </a></div>
   );
 };
 
